@@ -1,0 +1,56 @@
+#state: "DEBUG"
+learning_rate: 0.0001
+
+gpu_id: 0
+embedding_size: 64        # (int) the embedding size
+mlp_hidden_size: [256]    # (int) hidden size of feature mapping
+loss_type: BPR            # (str) BPR:InputType.PAIRWISE; BCE:input_type = InputType.POINTWISE
+
+cl_sim_weight: 0.01       # (float) weights of similarity terms in encoder loss
+cl_org_weight: 0.01       # (float) weights of orthogonality terms in encoder loss
+cl_decoder_weight: 0.01   # (float) weights of decoder loss
+item_cl_weight: 0.01      # (float) weights of item disentanglement loss
+drop_rate: 0.1            # (float) the dropout rate
+n_layers: 3               # (int) the layer num of GCN
+reg_weight: 1e-3          # (float) the weight decay for l2 normalization
+connect_way: concat       # (str) the connecting way for all GCN layers: concat;mean
+feature_mapping_way: 'projection'  # (str) projection / mlp
+temperature: 0.3          # (float) temperature of contrastive Loss
+
+fuse_mode: attention       # (str) feature fusion mode: attention / concat
+attention_mode: all        # (str) all: gnn_emb+common+specific, part: common+specific
+concat_mode: part          # (str) all: GNN_emb||common||specific, part: common||specific
+
+activation_func: leakyrelu # (str) activation function type when feature_mapping_way=mlp
+init_way: xavier           # (str) parameter initialization: xavier / kaiming
+item_mapping: False        # (bool) whether to use a non-linear mapping for item
+item_negative: True        # (bool) whether to apply item contrastive disentanglement
+item_disentangle: True     # (bool) whether to apply disentanglement and fusion to item
+preference_disentangle: True  # (bool) whether to disentangle features after GNN
+
+# ============================================================
+# [联邦改造] 新增超参数
+# ============================================================
+federated_mode: True          # (bool) 是否启用联邦学习模式
+num_federated_clients: 2      # (int)  联邦客户端数量
+num_federated_rounds: 200      # (int)  联邦通信轮数
+local_epochs: 3              # (int)  每轮本地训练的 epoch 数
+eval_direction: both       # (str)  评估方向: target(默认) / source(反向) / both(双向)
+fed_stopping_step: 5             # 联邦早停：所有客户端连续N轮无提升则停止
+
+# ============================================================
+# [P1] FedProx 近端约束
+# ============================================================
+fedprox_mu: 0.01          # (float) 近端项系数 mu；0.0 则退化为标准 FedAvg
+
+# ============================================================
+# [P2] 自监督图对比学习 (SGL)
+# ============================================================
+ssl_weight: 0.1           # (float) SGL 损失权重；0.0 禁用
+ssl_aug_ratio: 0.1        # (float) Edge Dropout 丢边率
+ssl_temp: 0.2             # (float) InfoNCE 温度系数
+
+# ============================================================
+# [P2] 跨域重叠用户 common 特征融合门控
+# ============================================================
+use_cross_domain_fusion: True  # (bool) 是否启用跨域 common 特征软融合门控
