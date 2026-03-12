@@ -1,0 +1,595 @@
+Wed 11 Mar 2026 16:55:45 INFO  ======================================================================
+Wed 11 Mar 2026 16:55:45 INFO  Federated DGCDR Training  (Bidirectional CDR)
+Wed 11 Mar 2026 16:55:45 INFO  ======================================================================
+Wed 11 Mar 2026 16:55:45 INFO    Client A data config : recbole_cdr/properties/dataset/AmazonElec_AmazonCloth_commonUser_10-core.yaml
+Wed 11 Mar 2026 16:55:45 INFO    Client B data config : recbole_cdr/properties/dataset/AmazonCloth_AmazonElec_commonUser_10-core.yaml
+Wed 11 Mar 2026 16:55:45 INFO    Device               : cuda
+Wed 11 Mar 2026 16:55:45 INFO  
+[Setup] Building Client A...
+Wed 11 Mar 2026 16:55:45 INFO  
+[client_A] Loading config from: recbole_cdr/properties/dataset/AmazonElec_AmazonCloth_commonUser_10-core.yaml
+Wed 11 Mar 2026 16:57:33 INFO  [client_A] Dataset: Source domain: AmazonElec_AmazonCloth_commonUser_10-core
+The number of users: 35828
+Average actions of users: 22.66360566053535
+The number of items: 62549
+Average actions of items: 12.981534181748417
+The number of inters: 811969
+The sparsity of the dataset: 99.96376764921314%
+Remain Fields: ['source_user_id', 'source_item_id', 'source_label']
+Target domain: AmazonCloth_AmazonElec_commonUser_10-core
+The number of users: 35828
+Average actions of users: 23.6425600803863
+The number of items: 72670
+Average actions of items: 11.656167003811804
+The number of inters: 847042
+The sparsity of the dataset: 99.96746676731829%
+Remain Fields: ['target_user_id', 'target_item_id', 'target_label']
+Num of overlapped user: 35828
+Num of overlapped item: 1
+Wed 11 Mar 2026 16:57:34 INFO  [Training]: train_batch_size = [4096] negative sampling: [{'uniform': 1}]
+Wed 11 Mar 2026 16:57:34 INFO  [Evaluation]: eval_batch_size = [40960] eval_args: [{'split': {'RS': [0.6, 0.2, 0.2]}, 'split_valid': {'RS': [0.8, 0.2]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Wed 11 Mar 2026 16:57:34 INFO  [client_A] source_domain=AmazonElec_AmazonCloth_commonUser_10-core  target_domain=AmazonCloth_AmazonElec_commonUser_10-core
+Wed 11 Mar 2026 16:57:36 INFO  [client_A] Model initialized: DGCDR
+Wed 11 Mar 2026 16:57:36 INFO  [client_A] Data size: 1344779
+Wed 11 Mar 2026 16:57:36 INFO  
+[Setup] Building Client B...
+Wed 11 Mar 2026 16:57:36 INFO  
+[client_B] Loading config from: recbole_cdr/properties/dataset/AmazonCloth_AmazonElec_commonUser_10-core.yaml
+Wed 11 Mar 2026 16:58:41 INFO  [client_B] Dataset: Source domain: AmazonCloth_AmazonElec_commonUser_10-core
+The number of users: 35828
+Average actions of users: 23.6425600803863
+The number of items: 72670
+Average actions of items: 11.656167003811804
+The number of inters: 847042
+The sparsity of the dataset: 99.96746676731829%
+Remain Fields: ['source_user_id', 'source_item_id', 'source_label']
+Target domain: AmazonElec_AmazonCloth_commonUser_10-core
+The number of users: 35828
+Average actions of users: 22.66360566053535
+The number of items: 62549
+Average actions of items: 12.981534181748417
+The number of inters: 811969
+The sparsity of the dataset: 99.96376764921314%
+Remain Fields: ['target_user_id', 'target_item_id', 'target_label']
+Num of overlapped user: 35828
+Num of overlapped item: 1
+Wed 11 Mar 2026 16:58:42 INFO  [Training]: train_batch_size = [4096] negative sampling: [{'uniform': 1}]
+Wed 11 Mar 2026 16:58:42 INFO  [Evaluation]: eval_batch_size = [40960] eval_args: [{'split': {'RS': [0.6, 0.2, 0.2]}, 'split_valid': {'RS': [0.8, 0.2]}, 'group_by': 'user', 'order': 'RO', 'mode': 'full'}]
+Wed 11 Mar 2026 16:58:42 INFO  [client_B] source_domain=AmazonCloth_AmazonElec_commonUser_10-core  target_domain=AmazonElec_AmazonCloth_commonUser_10-core
+Wed 11 Mar 2026 16:58:44 INFO  [client_B] Model initialized: DGCDR
+Wed 11 Mar 2026 16:58:44 INFO  [client_B] Data size: 1359235
+Wed 11 Mar 2026 16:58:44 INFO  
+[Setup] Federated infrastructure ready.
+Wed 11 Mar 2026 16:58:44 INFO    num_rounds=200  local_epochs=3  fed_stopping_step=5
+Wed 11 Mar 2026 16:58:44 INFO  
+[Train] Starting federated training...
+Wed 11 Mar 2026 16:58:44 INFO  [Federated] Start: max 200 rounds × 2 clients × 3 local epoch/round  | early_stop_patience=5
+Wed 11 Mar 2026 16:58:44 INFO    client_A => A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+Wed 11 Mar 2026 16:58:44 INFO    client_B => B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+Wed 11 Mar 2026 16:58:44 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 1/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 16:58:44 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 16:59:12 INFO  epoch 0 training [time: 27.98s, train_loss1: 90.5114, train_loss2: 90.2341, train_loss3: 0.0001, train_loss4: 0.0001, train_loss5: 0.0002, train_loss6: 1.8159, train_loss7: 1.8158, train_loss8: 0.6547, train_loss9: 0.5326, train_loss10: 109.7329]
+Wed 11 Mar 2026 16:59:21 INFO  epoch 0 evaluating [time: 8.99s, valid_score: 0.005600]
+Wed 11 Mar 2026 16:59:21 INFO  valid result: 
+mrr@20 : 0.0063    recall@20 : 0.0056    ndcg@20 : 0.0038    hit@20 : 0.0201
+Wed 11 Mar 2026 16:59:48 INFO  epoch 1 training [time: 27.77s, train_loss1: 90.3003, train_loss2: 89.7701, train_loss3: 0.0006, train_loss4: 0.0002, train_loss5: 0.0004, train_loss6: 1.8150, train_loss7: 1.8139, train_loss8: 0.5047, train_loss9: 0.3714, train_loss10: 109.6605]
+Wed 11 Mar 2026 16:59:57 INFO  epoch 1 evaluating [time: 8.86s, valid_score: 0.012500]
+Wed 11 Mar 2026 16:59:57 INFO  valid result: 
+mrr@20 : 0.0141    recall@20 : 0.0125    ndcg@20 : 0.0085    hit@20 : 0.043
+Wed 11 Mar 2026 17:00:25 INFO  epoch 2 training [time: 27.62s, train_loss1: 90.0893, train_loss2: 89.1165, train_loss3: 0.0017, train_loss4: 0.0002, train_loss5: 0.0016, train_loss6: 1.8136, train_loss7: 1.8111, train_loss8: 0.4446, train_loss9: 0.3069, train_loss10: 109.6368]
+Wed 11 Mar 2026 17:00:34 INFO  epoch 2 evaluating [time: 8.83s, valid_score: 0.016500]
+Wed 11 Mar 2026 17:00:34 INFO  valid result: 
+mrr@20 : 0.0193    recall@20 : 0.0165    ndcg@20 : 0.0115    hit@20 : 0.0571
+Wed 11 Mar 2026 17:00:34 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 1/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:00:34 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:01:00 INFO  epoch 0 training [time: 25.93s, train_loss1: 87.0088, train_loss2: 86.8632, train_loss3: 0.0001, train_loss4: 0.0001, train_loss5: 0.0001, train_loss6: 1.7466, train_loss7: 1.7466, train_loss8: 0.5933, train_loss9: 0.5485, train_loss10: 105.4928]
+Wed 11 Mar 2026 17:01:08 INFO  epoch 0 evaluating [time: 8.46s, valid_score: 0.004600]
+Wed 11 Mar 2026 17:01:08 INFO  valid result: 
+mrr@20 : 0.0045    recall@20 : 0.0046    ndcg@20 : 0.0029    hit@20 : 0.0164
+Wed 11 Mar 2026 17:01:34 INFO  epoch 1 training [time: 25.97s, train_loss1: 86.7743, train_loss2: 86.5272, train_loss3: 0.0005, train_loss4: 0.0002, train_loss5: 0.0003, train_loss6: 1.7452, train_loss7: 1.7455, train_loss8: 0.4385, train_loss9: 0.4111, train_loss10: 105.3782]
+Wed 11 Mar 2026 17:01:43 INFO  epoch 1 evaluating [time: 8.51s, valid_score: 0.015000]
+Wed 11 Mar 2026 17:01:43 INFO  valid result: 
+mrr@20 : 0.0146    recall@20 : 0.015    ndcg@20 : 0.0095    hit@20 : 0.0492
+Wed 11 Mar 2026 17:02:09 INFO  epoch 2 training [time: 25.91s, train_loss1: 86.4981, train_loss2: 86.1092, train_loss3: 0.0015, train_loss4: 0.0004, train_loss5: 0.0005, train_loss6: 1.7433, train_loss7: 1.7437, train_loss8: 0.3722, train_loss9: 0.3547, train_loss10: 105.3768]
+Wed 11 Mar 2026 17:02:17 INFO  epoch 2 evaluating [time: 8.56s, valid_score: 0.022200]
+Wed 11 Mar 2026 17:02:17 INFO  valid result: 
+mrr@20 : 0.0205    recall@20 : 0.0222    ndcg@20 : 0.0139    hit@20 : 0.0708
+Wed 11 Mar 2026 17:02:17 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   1/200]  align=0.2797  sep=0.7161
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:02:17 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0165  [↑ NEW BEST]  (best so far = 0.0165  @ round 1)
+    mrr@20=0.0193  recall@20=0.0165  ndcg@20=0.0115  hit@20=0.0571
+Wed 11 Mar 2026 17:02:17 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0222  [↑ NEW BEST]  (best so far = 0.0222  @ round 1)
+    mrr@20=0.0205  recall@20=0.0222  ndcg@20=0.0139  hit@20=0.0708
+Wed 11 Mar 2026 17:02:17 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:02:17 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 2/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:02:17 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:02:45 INFO  epoch 0 training [time: 27.98s, train_loss1: 89.7941, train_loss2: 87.9000, train_loss3: 0.0039, train_loss4: 0.0004, train_loss5: 0.0090, train_loss6: 1.8132, train_loss7: 1.8106, train_loss8: 0.4051, train_loss9: 0.2658, train_loss10: 109.7750, train_loss11: 0.0009]
+Wed 11 Mar 2026 17:02:55 INFO  epoch 0 evaluating [time: 9.06s, valid_score: 0.019600]
+Wed 11 Mar 2026 17:02:55 INFO  valid result: 
+mrr@20 : 0.023    recall@20 : 0.0196    ndcg@20 : 0.0137    hit@20 : 0.0673
+Wed 11 Mar 2026 17:03:23 INFO  epoch 1 training [time: 28.10s, train_loss1: 89.3525, train_loss2: 85.4759, train_loss3: 0.0072, train_loss4: 0.0010, train_loss5: 0.0451, train_loss6: 1.8127, train_loss7: 1.8101, train_loss8: 0.3761, train_loss9: 0.2357, train_loss10: 110.1376, train_loss11: 0.0022]
+Wed 11 Mar 2026 17:03:34 INFO  epoch 1 evaluating [time: 11.29s, valid_score: 0.021400]
+Wed 11 Mar 2026 17:03:34 INFO  valid result: 
+mrr@20 : 0.0248    recall@20 : 0.0214    ndcg@20 : 0.0148    hit@20 : 0.0737
+Wed 11 Mar 2026 17:04:03 INFO  epoch 2 training [time: 28.76s, train_loss1: 88.6186, train_loss2: 81.0847, train_loss3: 0.0146, train_loss4: 0.0039, train_loss5: 0.1153, train_loss6: 1.8118, train_loss7: 1.8094, train_loss8: 0.3504, train_loss9: 0.2110, train_loss10: 110.8465, train_loss11: 0.0059]
+Wed 11 Mar 2026 17:04:17 INFO  epoch 2 evaluating [time: 14.67s, valid_score: 0.023200]
+Wed 11 Mar 2026 17:04:17 INFO  valid result: 
+mrr@20 : 0.0264    recall@20 : 0.0232    ndcg@20 : 0.0159    hit@20 : 0.0795
+Wed 11 Mar 2026 17:04:17 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 2/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:04:17 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:04:44 INFO  epoch 0 training [time: 27.06s, train_loss1: 86.0700, train_loss2: 85.4690, train_loss3: 0.0033, train_loss4: 0.0014, train_loss5: 0.0012, train_loss6: 1.7431, train_loss7: 1.7429, train_loss8: 0.3304, train_loss9: 0.3191, train_loss10: 105.4470, train_loss11: 0.0006]
+Wed 11 Mar 2026 17:04:53 INFO  epoch 0 evaluating [time: 8.54s, valid_score: 0.026600]
+Wed 11 Mar 2026 17:04:53 INFO  valid result: 
+mrr@20 : 0.0241    recall@20 : 0.0266    ndcg@20 : 0.0165    hit@20 : 0.0846
+Wed 11 Mar 2026 17:05:19 INFO  epoch 1 training [time: 26.18s, train_loss1: 85.3297, train_loss2: 84.3938, train_loss3: 0.0065, train_loss4: 0.0066, train_loss5: 0.0040, train_loss6: 1.7428, train_loss7: 1.7426, train_loss8: 0.3006, train_loss9: 0.2909, train_loss10: 105.6896, train_loss11: 0.0011]
+Wed 11 Mar 2026 17:05:28 INFO  epoch 1 evaluating [time: 8.46s, valid_score: 0.029500]
+Wed 11 Mar 2026 17:05:28 INFO  valid result: 
+mrr@20 : 0.0269    recall@20 : 0.0295    ndcg@20 : 0.0183    hit@20 : 0.0943
+Wed 11 Mar 2026 17:05:54 INFO  epoch 2 training [time: 26.11s, train_loss1: 83.8552, train_loss2: 82.5078, train_loss3: 0.0117, train_loss4: 0.0272, train_loss5: 0.0105, train_loss6: 1.7421, train_loss7: 1.7420, train_loss8: 0.2763, train_loss9: 0.2674, train_loss10: 106.1815, train_loss11: 0.0027]
+Wed 11 Mar 2026 17:06:02 INFO  epoch 2 evaluating [time: 8.53s, valid_score: 0.032000]
+Wed 11 Mar 2026 17:06:02 INFO  valid result: 
+mrr@20 : 0.029    recall@20 : 0.032    ndcg@20 : 0.0198    hit@20 : 0.1025
+Wed 11 Mar 2026 17:06:03 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   2/200]  align=0.4773  sep=0.5200
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:06:03 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0232  [↑ NEW BEST]  (best so far = 0.0232  @ round 2)
+    mrr@20=0.0264  recall@20=0.0232  ndcg@20=0.0159  hit@20=0.0795
+Wed 11 Mar 2026 17:06:03 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0320  [↑ NEW BEST]  (best so far = 0.0320  @ round 2)
+    mrr@20=0.0290  recall@20=0.0320  ndcg@20=0.0198  hit@20=0.1025
+Wed 11 Mar 2026 17:06:03 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:06:03 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 3/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:06:03 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:06:31 INFO  epoch 0 training [time: 28.03s, train_loss1: 87.3965, train_loss2: 74.4154, train_loss3: 0.0324, train_loss4: 0.0166, train_loss5: 0.2171, train_loss6: 1.8104, train_loss7: 1.8083, train_loss8: 0.3293, train_loss9: 0.1898, train_loss10: 111.9282, train_loss11: 0.0124]
+Wed 11 Mar 2026 17:06:40 INFO  epoch 0 evaluating [time: 9.74s, valid_score: 0.024300]
+Wed 11 Mar 2026 17:06:40 INFO  valid result: 
+mrr@20 : 0.0278    recall@20 : 0.0243    ndcg@20 : 0.0167    hit@20 : 0.0837
+Wed 11 Mar 2026 17:07:08 INFO  epoch 1 training [time: 28.02s, train_loss1: 85.3189, train_loss2: 65.8182, train_loss3: 0.0565, train_loss4: 0.0360, train_loss5: 0.3751, train_loss6: 1.8085, train_loss7: 1.8069, train_loss8: 0.3088, train_loss9: 0.1716, train_loss10: 113.4089, train_loss11: 0.0268]
+Wed 11 Mar 2026 17:07:17 INFO  epoch 1 evaluating [time: 8.99s, valid_score: 0.025300]
+Wed 11 Mar 2026 17:07:17 INFO  valid result: 
+mrr@20 : 0.0285    recall@20 : 0.0253    ndcg@20 : 0.0172    hit@20 : 0.0866
+Wed 11 Mar 2026 17:07:45 INFO  epoch 2 training [time: 27.79s, train_loss1: 81.9882, train_loss2: 56.1990, train_loss3: 0.0907, train_loss4: 0.0640, train_loss5: 0.5124, train_loss6: 1.8066, train_loss7: 1.8050, train_loss8: 0.2900, train_loss9: 0.1568, train_loss10: 115.1385, train_loss11: 0.0447]
+Wed 11 Mar 2026 17:07:54 INFO  epoch 2 evaluating [time: 9.07s, valid_score: 0.025600]
+Wed 11 Mar 2026 17:07:54 INFO  valid result: 
+mrr@20 : 0.0287    recall@20 : 0.0256    ndcg@20 : 0.0174    hit@20 : 0.088
+Wed 11 Mar 2026 17:07:54 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 3/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:07:54 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:08:20 INFO  epoch 0 training [time: 26.12s, train_loss1: 81.3440, train_loss2: 79.2376, train_loss3: 0.0245, train_loss4: 0.0618, train_loss5: 0.0285, train_loss6: 1.7407, train_loss7: 1.7411, train_loss8: 0.2546, train_loss9: 0.2474, train_loss10: 107.0471, train_loss11: 0.0066]
+Wed 11 Mar 2026 17:08:30 INFO  epoch 0 evaluating [time: 9.27s, valid_score: 0.034200]
+Wed 11 Mar 2026 17:08:30 INFO  valid result: 
+mrr@20 : 0.0306    recall@20 : 0.0342    ndcg@20 : 0.0211    hit@20 : 0.1104
+Wed 11 Mar 2026 17:08:56 INFO  epoch 1 training [time: 26.06s, train_loss1: 77.9600, train_loss2: 74.0410, train_loss3: 0.0475, train_loss4: 0.1019, train_loss5: 0.0769, train_loss6: 1.7387, train_loss7: 1.7399, train_loss8: 0.2346, train_loss9: 0.2296, train_loss10: 108.2569, train_loss11: 0.0151]
+Wed 11 Mar 2026 17:09:04 INFO  epoch 1 evaluating [time: 8.72s, valid_score: 0.035800]
+Wed 11 Mar 2026 17:09:04 INFO  valid result: 
+mrr@20 : 0.0319    recall@20 : 0.0358    ndcg@20 : 0.022    hit@20 : 0.1153
+Wed 11 Mar 2026 17:09:31 INFO  epoch 2 training [time: 26.07s, train_loss1: 73.9294, train_loss2: 67.2140, train_loss3: 0.0804, train_loss4: 0.1399, train_loss5: 0.1552, train_loss6: 1.7362, train_loss7: 1.7385, train_loss8: 0.2154, train_loss9: 0.2147, train_loss10: 109.6453, train_loss11: 0.0274]
+Wed 11 Mar 2026 17:09:39 INFO  epoch 2 evaluating [time: 8.53s, valid_score: 0.036900]
+Wed 11 Mar 2026 17:09:39 INFO  valid result: 
+mrr@20 : 0.0329    recall@20 : 0.0369    ndcg@20 : 0.0227    hit@20 : 0.1186
+Wed 11 Mar 2026 17:09:39 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   3/200]  align=0.6294  sep=0.3725
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:09:39 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0256  [↑ NEW BEST]  (best so far = 0.0256  @ round 3)
+    mrr@20=0.0287  recall@20=0.0256  ndcg@20=0.0174  hit@20=0.0880
+Wed 11 Mar 2026 17:09:39 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0369  [↑ NEW BEST]  (best so far = 0.0369  @ round 3)
+    mrr@20=0.0329  recall@20=0.0369  ndcg@20=0.0227  hit@20=0.1186
+Wed 11 Mar 2026 17:09:39 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:09:39 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 4/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:09:39 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:10:07 INFO  epoch 0 training [time: 27.80s, train_loss1: 77.1931, train_loss2: 46.8152, train_loss3: 0.1474, train_loss4: 0.1014, train_loss5: 0.5659, train_loss6: 1.8048, train_loss7: 1.8024, train_loss8: 0.2739, train_loss9: 0.1462, train_loss10: 116.8687, train_loss11: 0.0463]
+Wed 11 Mar 2026 17:10:16 INFO  epoch 0 evaluating [time: 8.92s, valid_score: 0.025900]
+Wed 11 Mar 2026 17:10:16 INFO  valid result: 
+mrr@20 : 0.0288    recall@20 : 0.0259    ndcg@20 : 0.0175    hit@20 : 0.0887
+Wed 11 Mar 2026 17:10:44 INFO  epoch 1 training [time: 28.07s, train_loss1: 71.4834, train_loss2: 38.9118, train_loss3: 0.2371, train_loss4: 0.1430, train_loss5: 0.5788, train_loss6: 1.8034, train_loss7: 1.8002, train_loss8: 0.2594, train_loss9: 0.1398, train_loss10: 118.1775, train_loss11: 0.0704]
+Wed 11 Mar 2026 17:10:56 INFO  epoch 1 evaluating [time: 11.35s, valid_score: 0.025900]
+Wed 11 Mar 2026 17:10:56 INFO  valid result: 
+mrr@20 : 0.0286    recall@20 : 0.0259    ndcg@20 : 0.0174    hit@20 : 0.0889
+Wed 11 Mar 2026 17:11:24 INFO  epoch 2 training [time: 28.61s, train_loss1: 65.8461, train_loss2: 32.7058, train_loss3: 0.3425, train_loss4: 0.1920, train_loss5: 0.6232, train_loss6: 1.8025, train_loss7: 1.7986, train_loss8: 0.2453, train_loss9: 0.1361, train_loss10: 118.9746, train_loss11: 0.0752]
+Wed 11 Mar 2026 17:11:37 INFO  epoch 2 evaluating [time: 12.53s, valid_score: 0.026000]
+Wed 11 Mar 2026 17:11:37 INFO  valid result: 
+mrr@20 : 0.0285    recall@20 : 0.026    ndcg@20 : 0.0174    hit@20 : 0.0893
+Wed 11 Mar 2026 17:11:37 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 4/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:11:37 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:12:04 INFO  epoch 0 training [time: 27.10s, train_loss1: 68.9940, train_loss2: 59.6247, train_loss3: 0.1178, train_loss4: 0.1955, train_loss5: 0.2431, train_loss6: 1.7331, train_loss7: 1.7369, train_loss8: 0.1960, train_loss9: 0.2000, train_loss10: 111.2071, train_loss11: 0.0359]
+Wed 11 Mar 2026 17:12:12 INFO  epoch 0 evaluating [time: 8.60s, valid_score: 0.037900]
+Wed 11 Mar 2026 17:12:12 INFO  valid result: 
+mrr@20 : 0.0339    recall@20 : 0.0379    ndcg@20 : 0.0234    hit@20 : 0.1217
+Wed 11 Mar 2026 17:12:39 INFO  epoch 1 training [time: 26.08s, train_loss1: 62.8525, train_loss2: 52.1657, train_loss3: 0.1669, train_loss4: 0.2575, train_loss5: 0.3254, train_loss6: 1.7308, train_loss7: 1.7356, train_loss8: 0.1786, train_loss9: 0.1874, train_loss10: 112.8675, train_loss11: 0.0583]
+Wed 11 Mar 2026 17:12:47 INFO  epoch 1 evaluating [time: 8.47s, valid_score: 0.038800]
+Wed 11 Mar 2026 17:12:47 INFO  valid result: 
+mrr@20 : 0.0345    recall@20 : 0.0388    ndcg@20 : 0.0238    hit@20 : 0.1245
+Wed 11 Mar 2026 17:13:13 INFO  epoch 2 training [time: 26.11s, train_loss1: 55.9131, train_loss2: 45.3263, train_loss3: 0.2448, train_loss4: 0.2981, train_loss5: 0.4160, train_loss6: 1.7295, train_loss7: 1.7347, train_loss8: 0.1645, train_loss9: 0.1766, train_loss10: 114.4890, train_loss11: 0.0751]
+Wed 11 Mar 2026 17:13:23 INFO  epoch 2 evaluating [time: 9.48s, valid_score: 0.039300]
+Wed 11 Mar 2026 17:13:23 INFO  valid result: 
+mrr@20 : 0.035    recall@20 : 0.0393    ndcg@20 : 0.0241    hit@20 : 0.1264
+Wed 11 Mar 2026 17:13:23 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   4/200]  align=0.7028  sep=0.3036
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:13:23 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0260  [↑ NEW BEST]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0285  recall@20=0.0260  ndcg@20=0.0174  hit@20=0.0893
+Wed 11 Mar 2026 17:13:23 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0393  [↑ NEW BEST]  (best so far = 0.0393  @ round 4)
+    mrr@20=0.0350  recall@20=0.0393  ndcg@20=0.0241  hit@20=0.1264
+Wed 11 Mar 2026 17:13:23 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:13:23 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 5/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:13:23 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:13:51 INFO  epoch 0 training [time: 27.76s, train_loss1: 60.2712, train_loss2: 27.9694, train_loss3: 0.4436, train_loss4: 0.2464, train_loss5: 0.7091, train_loss6: 1.8016, train_loss7: 1.7971, train_loss8: 0.2322, train_loss9: 0.1346, train_loss10: 119.3991, train_loss11: 0.0518]
+Wed 11 Mar 2026 17:14:00 INFO  epoch 0 evaluating [time: 8.98s, valid_score: 0.026000]
+Wed 11 Mar 2026 17:14:00 INFO  valid result: 
+mrr@20 : 0.0283    recall@20 : 0.026    ndcg@20 : 0.0173    hit@20 : 0.0893
+Wed 11 Mar 2026 17:14:28 INFO  epoch 1 training [time: 27.98s, train_loss1: 54.7022, train_loss2: 24.2945, train_loss3: 0.5296, train_loss4: 0.3192, train_loss5: 0.8134, train_loss6: 1.8006, train_loss7: 1.7968, train_loss8: 0.2201, train_loss9: 0.1341, train_loss10: 119.6346, train_loss11: 0.0714]
+Wed 11 Mar 2026 17:14:37 INFO  epoch 1 evaluating [time: 9.05s, valid_score: 0.025800]
+Wed 11 Mar 2026 17:14:37 INFO  valid result: 
+mrr@20 : 0.0281    recall@20 : 0.0258    ndcg@20 : 0.0172    hit@20 : 0.0888
+Wed 11 Mar 2026 17:15:05 INFO  epoch 2 training [time: 27.93s, train_loss1: 49.5816, train_loss2: 21.3583, train_loss3: 0.5891, train_loss4: 0.4031, train_loss5: 0.9156, train_loss6: 1.8002, train_loss7: 1.7969, train_loss8: 0.2121, train_loss9: 0.1349, train_loss10: 119.6832, train_loss11: 0.0725]
+Wed 11 Mar 2026 17:15:14 INFO  epoch 2 evaluating [time: 9.15s, valid_score: 0.025700]
+Wed 11 Mar 2026 17:15:14 INFO  valid result: 
+mrr@20 : 0.0279    recall@20 : 0.0257    ndcg@20 : 0.0171    hit@20 : 0.0885
+Wed 11 Mar 2026 17:15:14 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 5/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:15:14 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:15:40 INFO  epoch 0 training [time: 26.11s, train_loss1: 48.9429, train_loss2: 39.2294, train_loss3: 0.3478, train_loss4: 0.3354, train_loss5: 0.5324, train_loss6: 1.7282, train_loss7: 1.7340, train_loss8: 0.1541, train_loss9: 0.1689, train_loss10: 115.7596, train_loss11: 0.0611]
+Wed 11 Mar 2026 17:15:49 INFO  epoch 0 evaluating [time: 9.40s, valid_score: 0.039700]
+Wed 11 Mar 2026 17:15:49 INFO  valid result: 
+mrr@20 : 0.0354    recall@20 : 0.0397    ndcg@20 : 0.0243    hit@20 : 0.1277
+Wed 11 Mar 2026 17:16:16 INFO  epoch 1 training [time: 26.87s, train_loss1: 42.6732, train_loss2: 34.1465, train_loss3: 0.4467, train_loss4: 0.3838, train_loss5: 0.6648, train_loss6: 1.7277, train_loss7: 1.7336, train_loss8: 0.1476, train_loss9: 0.1648, train_loss10: 116.4901, train_loss11: 0.0866]
+Wed 11 Mar 2026 17:16:32 INFO  epoch 1 evaluating [time: 15.69s, valid_score: 0.039800]
+Wed 11 Mar 2026 17:16:32 INFO  valid result: 
+mrr@20 : 0.0355    recall@20 : 0.0398    ndcg@20 : 0.0244    hit@20 : 0.1278
+Wed 11 Mar 2026 17:17:00 INFO  epoch 2 training [time: 28.13s, train_loss1: 37.6225, train_loss2: 29.9521, train_loss3: 0.5159, train_loss4: 0.4407, train_loss5: 0.7930, train_loss6: 1.7276, train_loss7: 1.7335, train_loss8: 0.1453, train_loss9: 0.1632, train_loss10: 116.6542, train_loss11: 0.0871]
+Wed 11 Mar 2026 17:17:16 INFO  epoch 2 evaluating [time: 15.81s, valid_score: 0.039800]
+Wed 11 Mar 2026 17:17:16 INFO  valid result: 
+mrr@20 : 0.0355    recall@20 : 0.0398    ndcg@20 : 0.0244    hit@20 : 0.1283
+Wed 11 Mar 2026 17:17:16 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   5/200]  align=0.7354  sep=0.2732
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:17:16 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0260  [no improve 1/5]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0283  recall@20=0.0260  ndcg@20=0.0173  hit@20=0.0893
+Wed 11 Mar 2026 17:17:16 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0398  [↑ NEW BEST]  (best so far = 0.0398  @ round 5)
+    mrr@20=0.0355  recall@20=0.0398  ndcg@20=0.0244  hit@20=0.1283
+Wed 11 Mar 2026 17:17:16 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:17:16 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 6/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:17:16 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:17:45 INFO  epoch 0 training [time: 28.56s, train_loss1: 44.9401, train_loss2: 18.9316, train_loss3: 0.6208, train_loss4: 0.4963, train_loss5: 1.0181, train_loss6: 1.7997, train_loss7: 1.7969, train_loss8: 0.2074, train_loss9: 0.1366, train_loss10: 119.5361, train_loss11: 0.0500]
+Wed 11 Mar 2026 17:17:54 INFO  epoch 0 evaluating [time: 8.95s, valid_score: 0.025700]
+Wed 11 Mar 2026 17:17:54 INFO  valid result: 
+mrr@20 : 0.0278    recall@20 : 0.0257    ndcg@20 : 0.017    hit@20 : 0.0879
+Wed 11 Mar 2026 17:18:22 INFO  epoch 1 training [time: 27.97s, train_loss1: 40.8817, train_loss2: 17.0349, train_loss3: 0.6299, train_loss4: 0.5823, train_loss5: 1.1070, train_loss6: 1.7993, train_loss7: 1.7971, train_loss8: 0.2057, train_loss9: 0.1389, train_loss10: 119.2082, train_loss11: 0.0676]
+Wed 11 Mar 2026 17:18:31 INFO  epoch 1 evaluating [time: 9.12s, valid_score: 0.025500]
+Wed 11 Mar 2026 17:18:31 INFO  valid result: 
+mrr@20 : 0.0277    recall@20 : 0.0255    ndcg@20 : 0.017    hit@20 : 0.0875
+Wed 11 Mar 2026 17:18:59 INFO  epoch 2 training [time: 27.98s, train_loss1: 37.4266, train_loss2: 15.3918, train_loss3: 0.6203, train_loss4: 0.6605, train_loss5: 1.1827, train_loss6: 1.7995, train_loss7: 1.7975, train_loss8: 0.2059, train_loss9: 0.1417, train_loss10: 118.7379, train_loss11: 0.0670]
+Wed 11 Mar 2026 17:19:08 INFO  epoch 2 evaluating [time: 9.08s, valid_score: 0.025500]
+Wed 11 Mar 2026 17:19:08 INFO  valid result: 
+mrr@20 : 0.0275    recall@20 : 0.0255    ndcg@20 : 0.0169    hit@20 : 0.0874
+Wed 11 Mar 2026 17:19:08 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 6/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:19:08 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:19:34 INFO  epoch 0 training [time: 26.12s, train_loss1: 33.5827, train_loss2: 26.4506, train_loss3: 0.5487, train_loss4: 0.5175, train_loss5: 0.9115, train_loss6: 1.7272, train_loss7: 1.7334, train_loss8: 0.1453, train_loss9: 0.1640, train_loss10: 116.3905, train_loss11: 0.0537]
+Wed 11 Mar 2026 17:19:43 INFO  epoch 0 evaluating [time: 8.50s, valid_score: 0.040000]
+Wed 11 Mar 2026 17:19:43 INFO  valid result: 
+mrr@20 : 0.0356    recall@20 : 0.04    ndcg@20 : 0.0245    hit@20 : 0.129
+Wed 11 Mar 2026 17:20:09 INFO  epoch 1 training [time: 26.13s, train_loss1: 30.6908, train_loss2: 23.5422, train_loss3: 0.5530, train_loss4: 0.5915, train_loss5: 1.0161, train_loss6: 1.7271, train_loss7: 1.7333, train_loss8: 0.1469, train_loss9: 0.1656, train_loss10: 115.8699, train_loss11: 0.0741]
+Wed 11 Mar 2026 17:20:17 INFO  epoch 1 evaluating [time: 8.48s, valid_score: 0.040000]
+Wed 11 Mar 2026 17:20:17 INFO  valid result: 
+mrr@20 : 0.0356    recall@20 : 0.04    ndcg@20 : 0.0245    hit@20 : 0.1288
+Wed 11 Mar 2026 17:20:43 INFO  epoch 2 training [time: 25.89s, train_loss1: 27.9963, train_loss2: 21.1672, train_loss3: 0.5425, train_loss4: 0.6634, train_loss5: 1.0952, train_loss6: 1.7274, train_loss7: 1.7334, train_loss8: 0.1492, train_loss9: 0.1681, train_loss10: 115.2482, train_loss11: 0.0717]
+Wed 11 Mar 2026 17:20:52 INFO  epoch 2 evaluating [time: 8.58s, valid_score: 0.040000]
+Wed 11 Mar 2026 17:20:52 INFO  valid result: 
+mrr@20 : 0.0354    recall@20 : 0.04    ndcg@20 : 0.0244    hit@20 : 0.1291
+Wed 11 Mar 2026 17:20:52 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   6/200]  align=0.7589  sep=0.2505
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:20:52 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0257  [no improve 2/5]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0278  recall@20=0.0257  ndcg@20=0.0170  hit@20=0.0879
+Wed 11 Mar 2026 17:20:52 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0400  [↑ NEW BEST]  (best so far = 0.0400  @ round 6)
+    mrr@20=0.0354  recall@20=0.0400  ndcg@20=0.0244  hit@20=0.1291
+Wed 11 Mar 2026 17:20:52 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:20:52 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 7/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:20:52 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:21:20 INFO  epoch 0 training [time: 27.97s, train_loss1: 34.3907, train_loss2: 13.9181, train_loss3: 0.6012, train_loss4: 0.7345, train_loss5: 1.2502, train_loss6: 1.7993, train_loss7: 1.7977, train_loss8: 0.2064, train_loss9: 0.1442, train_loss10: 118.2547, train_loss11: 0.0458]
+Wed 11 Mar 2026 17:21:30 INFO  epoch 0 evaluating [time: 10.16s, valid_score: 0.025500]
+Wed 11 Mar 2026 17:21:30 INFO  valid result: 
+mrr@20 : 0.0272    recall@20 : 0.0255    ndcg@20 : 0.0167    hit@20 : 0.0871
+Wed 11 Mar 2026 17:21:59 INFO  epoch 1 training [time: 28.86s, train_loss1: 31.8548, train_loss2: 12.7459, train_loss3: 0.5796, train_loss4: 0.7925, train_loss5: 1.3022, train_loss6: 1.7993, train_loss7: 1.7978, train_loss8: 0.2081, train_loss9: 0.1468, train_loss10: 117.7733, train_loss11: 0.0609]
+Wed 11 Mar 2026 17:22:18 INFO  epoch 1 evaluating [time: 18.96s, valid_score: 0.025200]
+Wed 11 Mar 2026 17:22:18 INFO  valid result: 
+mrr@20 : 0.0267    recall@20 : 0.0252    ndcg@20 : 0.0165    hit@20 : 0.0864
+Wed 11 Mar 2026 17:22:49 INFO  epoch 2 training [time: 30.99s, train_loss1: 29.6488, train_loss2: 11.7071, train_loss3: 0.5576, train_loss4: 0.8405, train_loss5: 1.3446, train_loss6: 1.7997, train_loss7: 1.7983, train_loss8: 0.2105, train_loss9: 0.1494, train_loss10: 117.2927, train_loss11: 0.0596]
+Wed 11 Mar 2026 17:22:58 INFO  epoch 2 evaluating [time: 8.89s, valid_score: 0.025000]
+Wed 11 Mar 2026 17:22:58 INFO  valid result: 
+mrr@20 : 0.0265    recall@20 : 0.025    ndcg@20 : 0.0163    hit@20 : 0.0859
+Wed 11 Mar 2026 17:22:58 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 7/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:22:58 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:23:24 INFO  epoch 0 training [time: 26.11s, train_loss1: 25.9545, train_loss2: 19.0571, train_loss3: 0.5229, train_loss4: 0.7355, train_loss5: 1.1629, train_loss6: 1.7273, train_loss7: 1.7333, train_loss8: 0.1520, train_loss9: 0.1706, train_loss10: 114.5976, train_loss11: 0.0443]
+Wed 11 Mar 2026 17:23:33 INFO  epoch 0 evaluating [time: 8.62s, valid_score: 0.039700]
+Wed 11 Mar 2026 17:23:33 INFO  valid result: 
+mrr@20 : 0.0352    recall@20 : 0.0397    ndcg@20 : 0.0243    hit@20 : 0.1282
+Wed 11 Mar 2026 17:23:59 INFO  epoch 1 training [time: 26.07s, train_loss1: 24.1577, train_loss2: 17.2477, train_loss3: 0.5035, train_loss4: 0.7961, train_loss5: 1.2185, train_loss6: 1.7274, train_loss7: 1.7333, train_loss8: 0.1545, train_loss9: 0.1727, train_loss10: 113.9690, train_loss11: 0.0610]
+Wed 11 Mar 2026 17:24:07 INFO  epoch 1 evaluating [time: 8.62s, valid_score: 0.039600]
+Wed 11 Mar 2026 17:24:07 INFO  valid result: 
+mrr@20 : 0.0349    recall@20 : 0.0396    ndcg@20 : 0.0242    hit@20 : 0.1279
+Wed 11 Mar 2026 17:24:33 INFO  epoch 2 training [time: 25.97s, train_loss1: 22.5372, train_loss2: 15.7129, train_loss3: 0.4864, train_loss4: 0.8464, train_loss5: 1.2644, train_loss6: 1.7277, train_loss7: 1.7334, train_loss8: 0.1570, train_loss9: 0.1755, train_loss10: 113.4137, train_loss11: 0.0595]
+Wed 11 Mar 2026 17:24:42 INFO  epoch 2 evaluating [time: 8.54s, valid_score: 0.039500]
+Wed 11 Mar 2026 17:24:42 INFO  valid result: 
+mrr@20 : 0.0348    recall@20 : 0.0395    ndcg@20 : 0.0241    hit@20 : 0.1271
+Wed 11 Mar 2026 17:24:42 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   7/200]  align=0.7770  sep=0.2326
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:24:42 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0255  [no improve 3/5]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0272  recall@20=0.0255  ndcg@20=0.0167  hit@20=0.0871
+Wed 11 Mar 2026 17:24:42 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0397  [no improve 1/5]  (best so far = 0.0400  @ round 6)
+    mrr@20=0.0352  recall@20=0.0397  ndcg@20=0.0243  hit@20=0.1282
+Wed 11 Mar 2026 17:24:42 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:24:42 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 8/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:24:42 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:25:10 INFO  epoch 0 training [time: 28.04s, train_loss1: 27.6409, train_loss2: 10.7707, train_loss3: 0.5403, train_loss4: 0.8796, train_loss5: 1.3765, train_loss6: 1.7996, train_loss7: 1.7984, train_loss8: 0.2128, train_loss9: 0.1517, train_loss10: 116.8369, train_loss11: 0.0412]
+Wed 11 Mar 2026 17:25:20 INFO  epoch 0 evaluating [time: 9.83s, valid_score: 0.024900]
+Wed 11 Mar 2026 17:25:20 INFO  valid result: 
+mrr@20 : 0.0261    recall@20 : 0.0249    ndcg@20 : 0.0162    hit@20 : 0.0853
+Wed 11 Mar 2026 17:25:48 INFO  epoch 1 training [time: 28.04s, train_loss1: 25.8444, train_loss2: 10.0166, train_loss3: 0.5282, train_loss4: 0.9119, train_loss5: 1.4002, train_loss6: 1.7997, train_loss7: 1.7986, train_loss8: 0.2142, train_loss9: 0.1539, train_loss10: 116.4251, train_loss11: 0.0545]
+Wed 11 Mar 2026 17:25:58 INFO  epoch 1 evaluating [time: 9.92s, valid_score: 0.024700]
+Wed 11 Mar 2026 17:25:58 INFO  valid result: 
+mrr@20 : 0.0256    recall@20 : 0.0247    ndcg@20 : 0.016    hit@20 : 0.0847
+Wed 11 Mar 2026 17:26:26 INFO  epoch 2 training [time: 28.03s, train_loss1: 24.1907, train_loss2: 9.2926, train_loss3: 0.5229, train_loss4: 0.9383, train_loss5: 1.4140, train_loss6: 1.8000, train_loss7: 1.7989, train_loss8: 0.2165, train_loss9: 0.1561, train_loss10: 116.0650, train_loss11: 0.0533]
+Wed 11 Mar 2026 17:26:35 INFO  epoch 2 evaluating [time: 9.25s, valid_score: 0.024500]
+Wed 11 Mar 2026 17:26:35 INFO  valid result: 
+mrr@20 : 0.0254    recall@20 : 0.0245    ndcg@20 : 0.0158    hit@20 : 0.0842
+Wed 11 Mar 2026 17:26:35 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 8/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:26:35 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:27:02 INFO  epoch 0 training [time: 26.52s, train_loss1: 21.1838, train_loss2: 14.4250, train_loss3: 0.4745, train_loss4: 0.8910, train_loss5: 1.2924, train_loss6: 1.7275, train_loss7: 1.7334, train_loss8: 0.1596, train_loss9: 0.1776, train_loss10: 112.8482, train_loss11: 0.0379]
+Wed 11 Mar 2026 17:27:17 INFO  epoch 0 evaluating [time: 14.76s, valid_score: 0.039200]
+Wed 11 Mar 2026 17:27:17 INFO  valid result: 
+mrr@20 : 0.0346    recall@20 : 0.0392    ndcg@20 : 0.0239    hit@20 : 0.1263
+Wed 11 Mar 2026 17:27:44 INFO  epoch 1 training [time: 27.35s, train_loss1: 20.0466, train_loss2: 13.1928, train_loss3: 0.4683, train_loss4: 0.9280, train_loss5: 1.3222, train_loss6: 1.7277, train_loss7: 1.7334, train_loss8: 0.1622, train_loss9: 0.1800, train_loss10: 112.3510, train_loss11: 0.0514]
+Wed 11 Mar 2026 17:28:00 INFO  epoch 1 evaluating [time: 15.60s, valid_score: 0.038800]
+Wed 11 Mar 2026 17:28:00 INFO  valid result: 
+mrr@20 : 0.0343    recall@20 : 0.0388    ndcg@20 : 0.0237    hit@20 : 0.1253
+Wed 11 Mar 2026 17:28:27 INFO  epoch 2 training [time: 27.82s, train_loss1: 18.9266, train_loss2: 12.1600, train_loss3: 0.4652, train_loss4: 0.9578, train_loss5: 1.3383, train_loss6: 1.7280, train_loss7: 1.7336, train_loss8: 0.1645, train_loss9: 0.1816, train_loss10: 111.9123, train_loss11: 0.0505]
+Wed 11 Mar 2026 17:28:37 INFO  epoch 2 evaluating [time: 9.45s, valid_score: 0.038200]
+Wed 11 Mar 2026 17:28:37 INFO  valid result: 
+mrr@20 : 0.0341    recall@20 : 0.0382    ndcg@20 : 0.0234    hit@20 : 0.1237
+Wed 11 Mar 2026 17:28:37 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   8/200]  align=0.7904  sep=0.2192
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:28:37 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0249  [no improve 4/5]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0261  recall@20=0.0249  ndcg@20=0.0162  hit@20=0.0853
+Wed 11 Mar 2026 17:28:37 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0392  [no improve 2/5]  (best so far = 0.0400  @ round 6)
+    mrr@20=0.0346  recall@20=0.0392  ndcg@20=0.0239  hit@20=0.1263
+Wed 11 Mar 2026 17:28:37 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:28:37 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 9/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:28:37 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:29:05 INFO  epoch 0 training [time: 27.97s, train_loss1: 22.8015, train_loss2: 8.6823, train_loss3: 0.5224, train_loss4: 0.9572, train_loss5: 1.4157, train_loss6: 1.8001, train_loss7: 1.7990, train_loss8: 0.2182, train_loss9: 0.1577, train_loss10: 115.7194, train_loss11: 0.0363]
+Wed 11 Mar 2026 17:29:14 INFO  epoch 0 evaluating [time: 9.03s, valid_score: 0.024300]
+Wed 11 Mar 2026 17:29:14 INFO  valid result: 
+mrr@20 : 0.0252    recall@20 : 0.0243    ndcg@20 : 0.0157    hit@20 : 0.0835
+Wed 11 Mar 2026 17:29:42 INFO  epoch 1 training [time: 28.07s, train_loss1: 21.4812, train_loss2: 8.0811, train_loss3: 0.5279, train_loss4: 0.9716, train_loss5: 1.4152, train_loss6: 1.8002, train_loss7: 1.7992, train_loss8: 0.2200, train_loss9: 0.1592, train_loss10: 115.3911, train_loss11: 0.0478]
+Wed 11 Mar 2026 17:29:51 INFO  epoch 1 evaluating [time: 8.91s, valid_score: 0.024100]
+Wed 11 Mar 2026 17:29:51 INFO  valid result: 
+mrr@20 : 0.0249    recall@20 : 0.0241    ndcg@20 : 0.0155    hit@20 : 0.0826
+Wed 11 Mar 2026 17:30:19 INFO  epoch 2 training [time: 27.93s, train_loss1: 20.2993, train_loss2: 7.5760, train_loss3: 0.5398, train_loss4: 0.9779, train_loss5: 1.4103, train_loss6: 1.8005, train_loss7: 1.7994, train_loss8: 0.2218, train_loss9: 0.1607, train_loss10: 115.1217, train_loss11: 0.0470]
+Wed 11 Mar 2026 17:30:28 INFO  epoch 2 evaluating [time: 8.88s, valid_score: 0.023800]
+Wed 11 Mar 2026 17:30:28 INFO  valid result: 
+mrr@20 : 0.0245    recall@20 : 0.0238    ndcg@20 : 0.0153    hit@20 : 0.0816
+Wed 11 Mar 2026 17:30:28 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 9/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:30:28 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:30:54 INFO  epoch 0 training [time: 26.05s, train_loss1: 17.8562, train_loss2: 11.2742, train_loss3: 0.4675, train_loss4: 0.9869, train_loss5: 1.3463, train_loss6: 1.7279, train_loss7: 1.7335, train_loss8: 0.1670, train_loss9: 0.1835, train_loss10: 111.4973, train_loss11: 0.0332]
+Wed 11 Mar 2026 17:31:03 INFO  epoch 0 evaluating [time: 8.51s, valid_score: 0.038100]
+Wed 11 Mar 2026 17:31:03 INFO  valid result: 
+mrr@20 : 0.0337    recall@20 : 0.0381    ndcg@20 : 0.0232    hit@20 : 0.1233
+Wed 11 Mar 2026 17:31:28 INFO  epoch 1 training [time: 25.89s, train_loss1: 16.9280, train_loss2: 10.4730, train_loss3: 0.4749, train_loss4: 1.0073, train_loss5: 1.3545, train_loss6: 1.7281, train_loss7: 1.7335, train_loss8: 0.1689, train_loss9: 0.1854, train_loss10: 111.1296, train_loss11: 0.0445]
+Wed 11 Mar 2026 17:31:37 INFO  epoch 1 evaluating [time: 8.53s, valid_score: 0.037900]
+Wed 11 Mar 2026 17:31:37 INFO  valid result: 
+mrr@20 : 0.0334    recall@20 : 0.0379    ndcg@20 : 0.023    hit@20 : 0.1226
+Wed 11 Mar 2026 17:32:03 INFO  epoch 2 training [time: 26.11s, train_loss1: 16.1924, train_loss2: 9.7600, train_loss3: 0.4843, train_loss4: 1.0207, train_loss5: 1.3559, train_loss6: 1.7283, train_loss7: 1.7337, train_loss8: 0.1712, train_loss9: 0.1868, train_loss10: 110.8220, train_loss11: 0.0435]
+Wed 11 Mar 2026 17:32:12 INFO  epoch 2 evaluating [time: 8.51s, valid_score: 0.037600]
+Wed 11 Mar 2026 17:32:12 INFO  valid result: 
+mrr@20 : 0.033    recall@20 : 0.0376    ndcg@20 : 0.0228    hit@20 : 0.1218
+Wed 11 Mar 2026 17:32:12 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round   9/200]  align=0.8004  sep=0.2092
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:32:12 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0243  [no improve 5/5]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0252  recall@20=0.0243  ndcg@20=0.0157  hit@20=0.0835
+Wed 11 Mar 2026 17:32:12 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0381  [no improve 3/5]  (best so far = 0.0400  @ round 6)
+    mrr@20=0.0337  recall@20=0.0381  ndcg@20=0.0232  hit@20=0.1233
+Wed 11 Mar 2026 17:32:12 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:32:12 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 10/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:32:12 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:32:40 INFO  epoch 0 training [time: 27.97s, train_loss1: 19.1587, train_loss2: 7.1530, train_loss3: 0.5538, train_loss4: 0.9826, train_loss5: 1.3943, train_loss6: 1.8005, train_loss7: 1.7995, train_loss8: 0.2230, train_loss9: 0.1620, train_loss10: 114.8567, train_loss11: 0.0326]
+Wed 11 Mar 2026 17:32:49 INFO  epoch 0 evaluating [time: 8.98s, valid_score: 0.023700]
+Wed 11 Mar 2026 17:32:49 INFO  valid result: 
+mrr@20 : 0.0242    recall@20 : 0.0237    ndcg@20 : 0.0152    hit@20 : 0.0812
+Wed 11 Mar 2026 17:33:17 INFO  epoch 1 training [time: 28.00s, train_loss1: 18.2541, train_loss2: 6.7099, train_loss3: 0.5740, train_loss4: 0.9873, train_loss5: 1.3806, train_loss6: 1.8006, train_loss7: 1.7997, train_loss8: 0.2248, train_loss9: 0.1631, train_loss10: 114.6110, train_loss11: 0.0423]
+Wed 11 Mar 2026 17:33:26 INFO  epoch 1 evaluating [time: 8.88s, valid_score: 0.023600]
+Wed 11 Mar 2026 17:33:26 INFO  valid result: 
+mrr@20 : 0.024    recall@20 : 0.0236    ndcg@20 : 0.0151    hit@20 : 0.0809
+Wed 11 Mar 2026 17:33:54 INFO  epoch 2 training [time: 27.89s, train_loss1: 17.3724, train_loss2: 6.3299, train_loss3: 0.5969, train_loss4: 0.9834, train_loss5: 1.3603, train_loss6: 1.8009, train_loss7: 1.7999, train_loss8: 0.2262, train_loss9: 0.1644, train_loss10: 114.3860, train_loss11: 0.0415]
+Wed 11 Mar 2026 17:34:03 INFO  epoch 2 evaluating [time: 8.90s, valid_score: 0.023300]
+Wed 11 Mar 2026 17:34:03 INFO  valid result: 
+mrr@20 : 0.0237    recall@20 : 0.0233    ndcg@20 : 0.0149    hit@20 : 0.0802
+Wed 11 Mar 2026 17:34:03 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 10/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:34:03 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:34:29 INFO  epoch 0 training [time: 25.98s, train_loss1: 15.3528, train_loss2: 9.1187, train_loss3: 0.4977, train_loss4: 1.0312, train_loss5: 1.3459, train_loss6: 1.7282, train_loss7: 1.7337, train_loss8: 0.1730, train_loss9: 0.1883, train_loss10: 110.5296, train_loss11: 0.0297]
+Wed 11 Mar 2026 17:34:41 INFO  epoch 0 evaluating [time: 12.19s, valid_score: 0.037400]
+Wed 11 Mar 2026 17:34:41 INFO  valid result: 
+mrr@20 : 0.0328    recall@20 : 0.0374    ndcg@20 : 0.0226    hit@20 : 0.1211
+Wed 11 Mar 2026 17:35:09 INFO  epoch 1 training [time: 28.58s, train_loss1: 14.7173, train_loss2: 8.5219, train_loss3: 0.5140, train_loss4: 1.0389, train_loss5: 1.3421, train_loss6: 1.7283, train_loss7: 1.7338, train_loss8: 0.1745, train_loss9: 0.1893, train_loss10: 110.2705, train_loss11: 0.0389]
+Wed 11 Mar 2026 17:35:30 INFO  epoch 1 evaluating [time: 20.83s, valid_score: 0.037200]
+Wed 11 Mar 2026 17:35:30 INFO  valid result: 
+mrr@20 : 0.0326    recall@20 : 0.0372    ndcg@20 : 0.0225    hit@20 : 0.1207
+Wed 11 Mar 2026 17:36:01 INFO  epoch 2 training [time: 30.42s, train_loss1: 14.0507, train_loss2: 7.9722, train_loss3: 0.5329, train_loss4: 1.0400, train_loss5: 1.3315, train_loss6: 1.7286, train_loss7: 1.7339, train_loss8: 0.1759, train_loss9: 0.1906, train_loss10: 110.0297, train_loss11: 0.0376]
+Wed 11 Mar 2026 17:36:09 INFO  epoch 2 evaluating [time: 8.54s, valid_score: 0.036900]
+Wed 11 Mar 2026 17:36:09 INFO  valid result: 
+mrr@20 : 0.0323    recall@20 : 0.0369    ndcg@20 : 0.0223    hit@20 : 0.1199
+Wed 11 Mar 2026 17:36:09 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round  10/200]  align=0.8080  sep=0.2015
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:36:09 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0237  [no improve 6/5]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0242  recall@20=0.0237  ndcg@20=0.0152  hit@20=0.0812
+Wed 11 Mar 2026 17:36:09 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0374  [no improve 4/5]  (best so far = 0.0400  @ round 6)
+    mrr@20=0.0328  recall@20=0.0374  ndcg@20=0.0226  hit@20=0.1211
+Wed 11 Mar 2026 17:36:09 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:36:09 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 11/200] Local training  >>  Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:36:09 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:36:37 INFO  epoch 0 training [time: 27.96s, train_loss1: 16.4031, train_loss2: 5.9815, train_loss3: 0.6220, train_loss4: 0.9804, train_loss5: 1.3334, train_loss6: 1.8009, train_loss7: 1.7999, train_loss8: 0.2273, train_loss9: 0.1652, train_loss10: 114.1876, train_loss11: 0.0290]
+Wed 11 Mar 2026 17:36:46 INFO  epoch 0 evaluating [time: 9.02s, valid_score: 0.023100]
+Wed 11 Mar 2026 17:36:46 INFO  valid result: 
+mrr@20 : 0.0235    recall@20 : 0.0231    ndcg@20 : 0.0147    hit@20 : 0.0794
+Wed 11 Mar 2026 17:37:14 INFO  epoch 1 training [time: 27.92s, train_loss1: 15.6094, train_loss2: 5.6869, train_loss3: 0.6492, train_loss4: 0.9757, train_loss5: 1.3112, train_loss6: 1.8010, train_loss7: 1.8001, train_loss8: 0.2280, train_loss9: 0.1664, train_loss10: 114.0099, train_loss11: 0.0378]
+Wed 11 Mar 2026 17:37:23 INFO  epoch 1 evaluating [time: 9.10s, valid_score: 0.022900]
+Wed 11 Mar 2026 17:37:23 INFO  valid result: 
+mrr@20 : 0.0233    recall@20 : 0.0229    ndcg@20 : 0.0146    hit@20 : 0.0789
+Wed 11 Mar 2026 17:37:51 INFO  epoch 2 training [time: 28.00s, train_loss1: 15.0064, train_loss2: 5.3420, train_loss3: 0.6793, train_loss4: 0.9673, train_loss5: 1.2874, train_loss6: 1.8012, train_loss7: 1.8002, train_loss8: 0.2289, train_loss9: 0.1667, train_loss10: 113.8265, train_loss11: 0.0365]
+Wed 11 Mar 2026 17:38:01 INFO  epoch 2 evaluating [time: 9.10s, valid_score: 0.022700]
+Wed 11 Mar 2026 17:38:01 INFO  valid result: 
+mrr@20 : 0.023    recall@20 : 0.0227    ndcg@20 : 0.0144    hit@20 : 0.0778
+Wed 11 Mar 2026 17:38:01 INFO  
+──────────────────────────────────────────────────────────────────────
+[Fed Round 11/200] Local training  >>  Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:38:01 INFO  Start training with BOTH mode
+Wed 11 Mar 2026 17:38:26 INFO  epoch 0 training [time: 25.83s, train_loss1: 13.3925, train_loss2: 7.5233, train_loss3: 0.5528, train_loss4: 1.0407, train_loss5: 1.3143, train_loss6: 1.7286, train_loss7: 1.7339, train_loss8: 0.1773, train_loss9: 0.1915, train_loss10: 109.8059, train_loss11: 0.0267]
+Wed 11 Mar 2026 17:38:36 INFO  epoch 0 evaluating [time: 9.47s, valid_score: 0.036500]
+Wed 11 Mar 2026 17:38:36 INFO  valid result: 
+mrr@20 : 0.032    recall@20 : 0.0365    ndcg@20 : 0.0221    hit@20 : 0.1188
+Wed 11 Mar 2026 17:39:02 INFO  epoch 1 training [time: 26.08s, train_loss1: 12.8160, train_loss2: 7.1059, train_loss3: 0.5753, train_loss4: 1.0391, train_loss5: 1.3016, train_loss6: 1.7287, train_loss7: 1.7340, train_loss8: 0.1789, train_loss9: 0.1926, train_loss10: 109.6043, train_loss11: 0.0341]
+Wed 11 Mar 2026 17:39:10 INFO  epoch 1 evaluating [time: 8.55s, valid_score: 0.036100]
+Wed 11 Mar 2026 17:39:10 INFO  valid result: 
+mrr@20 : 0.0317    recall@20 : 0.0361    ndcg@20 : 0.0219    hit@20 : 0.1176
+Wed 11 Mar 2026 17:39:37 INFO  epoch 2 training [time: 26.06s, train_loss1: 12.2274, train_loss2: 6.7800, train_loss3: 0.6001, train_loss4: 1.0321, train_loss5: 1.2822, train_loss6: 1.7289, train_loss7: 1.7341, train_loss8: 0.1797, train_loss9: 0.1932, train_loss10: 109.4114, train_loss11: 0.0333]
+Wed 11 Mar 2026 17:39:45 INFO  epoch 2 evaluating [time: 8.59s, valid_score: 0.035700]
+Wed 11 Mar 2026 17:39:45 INFO  valid result: 
+mrr@20 : 0.0314    recall@20 : 0.0357    ndcg@20 : 0.0216    hit@20 : 0.1163
+Wed 11 Mar 2026 17:39:45 INFO  
+══════════════════════════════════════════════════════════════════════
+[Fed Round  11/200]  align=0.8140  sep=0.1955
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:39:45 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    valid_score = 0.0231  [no improve 7/5]  (best so far = 0.0260  @ round 4)
+    mrr@20=0.0235  recall@20=0.0231  ndcg@20=0.0147  hit@20=0.0794
+Wed 11 Mar 2026 17:39:45 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    valid_score = 0.0365  [no improve 5/5]  (best so far = 0.0400  @ round 6)
+    mrr@20=0.0320  recall@20=0.0365  ndcg@20=0.0221  hit@20=0.1188
+Wed 11 Mar 2026 17:39:45 INFO  ══════════════════════════════════════════════════════════════════════
+Wed 11 Mar 2026 17:39:45 INFO  
+[Federated] *** Early stopping at round 11 ***
+  early stopping: all clients no improvement for 5 rounds
+Wed 11 Mar 2026 17:39:45 INFO  
+[Federated] Restoring each client's best model before testing...
+Wed 11 Mar 2026 17:39:45 INFO  [Federated] Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]: restored best model (round=4, valid_score=0.0260)
+Wed 11 Mar 2026 17:39:45 INFO  [Federated] Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]: restored best model (round=6, valid_score=0.0400)
+Wed 11 Mar 2026 17:39:45 INFO  
+══════════════════════════════════════════════════════════════════════
+[Federated] Training finished  (early stopping: all clients no improvement for 5 rounds)
+  Actual rounds     : 11 / 200
+  Total comm rounds : 11
+──────────────────────────────────────────────────────────────────────
+Wed 11 Mar 2026 17:39:45 INFO    Client A [AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core]
+    best_valid_score = 0.0260  @ fed_round 4
+    mrr@20=0.0285  recall@20=0.0260  ndcg@20=0.0174  hit@20=0.0893
+Wed 11 Mar 2026 17:39:45 INFO    Client B [AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core]
+    best_valid_score = 0.0400  @ fed_round 6
+    mrr@20=0.0354  recall@20=0.0400  ndcg@20=0.0244  hit@20=0.1291
+Wed 11 Mar 2026 17:39:45 INFO  ══════════════════════════════════════════════════════════════════════
+
+Wed 11 Mar 2026 17:39:45 INFO  
+[Eval] Final evaluation...
+Wed 11 Mar 2026 17:40:05 INFO  
+======================================================================
+Wed 11 Mar 2026 17:40:05 INFO  Federated Training Complete!
+Wed 11 Mar 2026 17:40:05 INFO  [Client A] AmazonElec_AmazonCloth_commonUser_10-core → AmazonCloth_AmazonElec_commonUser_10-core:
+  OrderedDict([('mrr@20', 0.0262), ('recall@20', 0.0252), ('ndcg@20', 0.0163), ('hit@20', 0.088)])
+Wed 11 Mar 2026 17:40:05 INFO  [Client B] AmazonCloth_AmazonElec_commonUser_10-core → AmazonElec_AmazonCloth_commonUser_10-core:
+  OrderedDict([('mrr@20', 0.0353), ('recall@20', 0.0402), ('ndcg@20', 0.0246), ('hit@20', 0.1299)])
+Wed 11 Mar 2026 17:40:05 INFO  Total communication rounds: 11
+Wed 11 Mar 2026 17:40:05 INFO  ======================================================================
